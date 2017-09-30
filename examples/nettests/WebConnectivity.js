@@ -1,4 +1,6 @@
-const mk = require('../../lib')
+const mk = require('../../build/Release/measurement-kit')
+const SegfaultHandler = require('segfault-handler')
+SegfaultHandler.registerHandler('crash.log')
 
 const options = {
   backend: '',
@@ -19,21 +21,21 @@ const options = {
   outputFilePath: ''
 }
 
-wc = mk.WebConnectivity(options)
-wc.on('progress', (prog, s) => {
+wc = mk.WebConnectivityTest(options)
+wc.on_progress((prog, s) => {
   console.log('progress', prog, s)
 })
-wc.on('log', (type, s) => {
+wc.on_log((type, s) => {
   console.log('log', type, s)
 })
-wc.on('entry', (e) => {
+wc.on_entry((e) => {
   console.log('entry', e)
 })
-wc.addInput('https://ooni.io/')
-wc.run()
-  .then(result => {
-    console.log('web_connectivity test finished running with result', result)
-  })
-  .catch(error => {
-    console.log(error)
-  })
+wc.add_input('https://ooni.io/')
+wc.run(() => {console.log('done')})
+//  .then(result => {
+//    console.log('web_connectivity test finished running with result', result)
+//  })
+//  .catch(error => {
+//    console.log(error)
+//  })

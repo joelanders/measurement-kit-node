@@ -20,6 +20,8 @@ class WebConnectivityTest : public Nan::ObjectWrap {
 
   static void OnProgress(const Nan::FunctionCallbackInfo<v8::Value>& info);
 
+  static void OnEntry(const Nan::FunctionCallbackInfo<v8::Value>& info);
+
   static void OnLog(const Nan::FunctionCallbackInfo<v8::Value>& info);
 
   static void AddInputFilePath(const Nan::FunctionCallbackInfo<v8::Value>& info);

@@ -31,6 +31,7 @@ void WebConnectivityTest::Init(v8::Local<v8::Object> exports) {
   Nan::SetPrototypeMethod(tpl, "set_options", SetOptions);
   Nan::SetPrototypeMethod(tpl, "set_verbosity", SetVerbosity);
   Nan::SetPrototypeMethod(tpl, "on_progress", OnProgress);
+  Nan::SetPrototypeMethod(tpl, "on_entry", OnEntry);
   Nan::SetPrototypeMethod(tpl, "on_log", OnLog);
   Nan::SetPrototypeMethod(tpl, "run", Run);
 
@@ -92,6 +93,9 @@ void WebConnectivityTest::OnProgress(const Nan::FunctionCallbackInfo<v8::Value>&
   v8::Local<v8::Value> argv[argc] = { Nan::New("hello world").ToLocalChecked() };
   Nan::MakeCallback(Nan::GetCurrentContext()->Global(), cb, argc, argv);
   */
+}
+
+void WebConnectivityTest::OnEntry(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 void WebConnectivityTest::OnLog(const Nan::FunctionCallbackInfo<v8::Value>& info) {
